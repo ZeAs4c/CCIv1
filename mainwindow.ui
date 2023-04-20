@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>881</width>
+    <height>538</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QGroupBox" name="pustryInstructions">
+      <property name="minimumSize">
+       <size>
+        <width>256</width>
+        <height>469</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>256</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="acceptDrops">
+       <bool>false</bool>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="title">
+       <string>Кондитерские инструкции</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>251</width>
+            <height>1310</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QPushButton" name="beginInstractionBtn">
+             <property name="text">
+              <string>Начало инструкции</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="bakingBtn">
+             <property name="text">
+              <string>Выпечка</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="sweetsBtn">
+             <property name="text">
+              <string>Конфеты</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="stuffingBtn">
+             <property name="text">
+              <string>Начинка</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="powderBtn">
+             <property name="text">
+              <string>Присыпка</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="glazeBtn">
+             <property name="text">
+              <string>Заливка</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="startProductionBtn">
+             <property name="text">
+              <string>Начало процесса производства</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="amountBtn">
+             <property name="text">
+              <string>Количество штук</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="glossCreationBtn">
+             <property name="text">
+              <string>Создание глянца начало</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="glossCreationEndBtn">
+             <property name="text">
+              <string>Создание глянца конец</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="doughPreparationBtn">
+             <property name="text">
+              <string>Заготовка теста</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="fillingPreparationBtn">
+             <property name="text">
+              <string>Заготовка начинки</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="icingPreparationBtn">
+             <property name="text">
+              <string>Заготовка заливки</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="powderPreparationBtn">
+             <property name="text">
+              <string>Заготовка присыпки</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="makingCaramelSyrupBtn">
+             <property name="text">
+              <string>Приготовление карамельного сиропа</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="preparationCaramelMassBtn">
+             <property name="text">
+              <string>Приготовление карамельной массы</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="coolingCaramelMassBtn">
+             <property name="text">
+              <string>Охлаждение карамельной массы</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="promCaramelMassBtn">
+             <property name="text">
+              <string>Проминка карамельной массы</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="shapingCaramelBtn">
+             <property name="text">
+              <string>Формование карамели</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="coolingCaramelBtn">
+             <property name="text">
+              <string>Охлаждение карамели</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="productionCycleBtn">
+             <property name="text">
+              <string>Цикл производства</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="doughDivisionBtn">
+             <property name="text">
+              <string>Деление теста на куски</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="putDoughMoldBtn">
+             <property name="acceptDrops">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Выложить тесто в форму</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="sendDoughOvenBtn">
+             <property name="text">
+              <string>Отправить тесто в печь</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="takeDoughOvenBtn">
+             <property name="text">
+              <string>Достать тесто из печи</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pourStaffingBtn">
+             <property name="text">
+              <string>Залить начинку в готовое тесто</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="drizzleGlazeDoughBtn">
+             <property name="text">
+              <string>Полить готовое тесто глазурью</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="formationSolidFillingBtn">
+             <property name="text">
+              <string>Формирование твердой начинки</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="fillFrostingBtn">
+             <property name="text">
+              <string>Залить глазурью твердую начинку</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="glossyCaramelBtn">
+             <property name="text">
+              <string>Глянцевание карамели</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="sprinkleProductBtn">
+             <property name="text">
+              <string>Присыпать изделие</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="packProductBtn">
+             <property name="text">
+              <string>Упаковать изделие</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="productMarkingBtn">
+             <property name="text">
+              <string>Маркировка изделия</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="sendingStorageBtn">
+             <property name="text">
+              <string>Отправка изделия на хранение</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="endProductionCycleBtn">
+             <property name="text">
+              <string>Конец цикла производства</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="endProductionBtn">
+             <property name="text">
+              <string>Конец процесса производства</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="endInstractionBtn">
+             <property name="text">
+              <string>Конец инструкции</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QListWidget" name="confectioneryFieldList">
+      <property name="minimumSize">
+       <size>
+        <width>596</width>
+        <height>469</height>
+       </size>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>881</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="actionsMenu">
+    <property name="title">
+     <string>Действие</string>
+    </property>
+    <addaction name="runInstrMenu"/>
+    <addaction name="deleteAllMenu"/>
+   </widget>
+   <addaction name="actionsMenu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="sizeGripEnabled">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <action name="runInstrMenu">
+   <property name="text">
+    <string>Выполнить</string>
+   </property>
+  </action>
+  <action name="deleteInstrMenu">
+   <property name="text">
+    <string>Удалить</string>
+   </property>
+  </action>
+  <action name="infMenu">
+   <property name="text">
+    <string>Посмотреть информацию</string>
+   </property>
+  </action>
+  <action name="deleteAllMenu">
+   <property name="text">
+    <string>Удалить всё</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
