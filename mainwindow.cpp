@@ -296,7 +296,7 @@ void MainWindow::on_stuffingBtn_clicked()
     QLineEdit *textLineStuffing = new QLineEdit();
     textLineStuffing->setValidator( new QIntValidator(0, 10000, this) );
     QLabel* stuffingLbl = new QLabel(ui->stuffingBtn->text()+":");
-    QLabel* mlLbl = new QLabel("мл:");
+    QLabel* mlLbl = new QLabel("объем в миллилитрах на одну единицу изделия");
     QHBoxLayout *stuffingLt = new QHBoxLayout();
     if(tracker == "baking"){
         boxStuffing->addItem("Молочный шоколад");
@@ -368,7 +368,7 @@ void MainWindow::on_powderBtn_clicked()
     QLineEdit *textLinePowder = new QLineEdit();
     textLinePowder->setValidator( new QIntValidator(0, 10000, this) );
     QLabel* powderLbl = new QLabel(ui->powderBtn->text()+":");
-    QLabel* grLbl = new QLabel("гр:");
+    QLabel* grLbl = new QLabel("вес в граммах на одну единицу изделия");
     QHBoxLayout *powderLt = new QHBoxLayout();
 
     if(tracker == "baking"){
@@ -425,7 +425,7 @@ void MainWindow::on_glazeBtn_clicked()
     QLineEdit *textLineGlaze = new QLineEdit();
     textLineGlaze->setValidator( new QIntValidator(0, 10000, this) );
     QLabel* glazeLbl = new QLabel(ui->glazeBtn->text()+":");
-    QLabel* mlLbl = new QLabel("мл:");
+    QLabel* mlLbl = new QLabel("объем в миллилитрах на одну единицу изделия");
     QHBoxLayout *glazeLt = new QHBoxLayout();
 
     if(tracker == "baking"){
@@ -545,7 +545,7 @@ void MainWindow::on_endProductionBtn_clicked()
 void MainWindow::on_amountBtn_clicked()
 {
     QWidget* wgtAmont = new QWidget;
-    QLabel* amountLbl = new QLabel("  "+ui->amountBtn->text()+":");
+    QLabel* amountLbl = new QLabel("  "+ui->amountBtn->text()+" изделия "+"<<"+trackerComboBox+">>"+":");
     wFileMap.append(qMakePair(QString("amountLbl"), amountLbl->text()));
     QLineEdit *textLineAmount = new QLineEdit();
     textLineAmount->setValidator( new QIntValidator(0, 10000, this) );
@@ -567,18 +567,21 @@ void MainWindow::on_amountBtn_clicked()
 void MainWindow::on_glossCreationBtn_clicked()
 {
     QWidget* wgtGlossCreation = new QWidget;
-    QLabel* glossCreation0Lbl = new QLabel("Создание глянца:");
+    QLabel* glossCreation0Lbl = new QLabel("  Создание глянца:");
     qInfo(logInfo()) << glossCreation0Lbl->text();
 
-    QLabel* glossCreationLbl = new QLabel("Расплавленные - Парафин:");
+    QLabel* glossCreationLbl = new QLabel("  Расплавленные - Парафин:");
     wFileMap.append(qMakePair(QString("glossCreation0Lbl"), glossCreation0Lbl->text()));
     QLineEdit *textGlossCreation = new QLineEdit();
     QLineEdit *textGlossCreation1 = new QLineEdit();
     textGlossCreation->setValidator( new QIntValidator(0, 10000, this) );
     textGlossCreation1->setValidator( new QIntValidator(0, 10000, this) );
-    QLabel* glossCreation1Lbl = new QLabel(" мл, Воск:");
-    QLabel* glossCreation2Lbl = new QLabel(" мл;");
+    QLabel* glossCreation1Lbl = new QLabel(" миллилитров на всю партию леденцов");
+    QLabel* glossCreation15Lbl = new QLabel("  Воск: ");
+
+    QLabel* glossCreation2Lbl = new QLabel(" миллилитров на всю партию леденцов");
     QHBoxLayout *glossCreationLt = new QHBoxLayout();
+    QHBoxLayout *glossCreationLt1 = new QHBoxLayout();
     QVBoxLayout *glossCreationVLt = new QVBoxLayout();
     connect( textGlossCreation, static_cast<void(QLineEdit::*)(const QString &text)>(&QLineEdit::textEdited),[=]{
         countGlossCreation = textGlossCreation->text();
@@ -593,11 +596,12 @@ void MainWindow::on_glossCreationBtn_clicked()
     glossCreationLt->addWidget(glossCreationLbl);
     glossCreationLt->addWidget(textGlossCreation);
     glossCreationLt->addWidget(glossCreation1Lbl);
-    glossCreationLt->addWidget(textGlossCreation1);
-    glossCreationLt->addWidget(glossCreation2Lbl);
-
+    glossCreationLt1->addWidget(glossCreation15Lbl);
+    glossCreationLt1->addWidget(textGlossCreation1);
+    glossCreationLt1->addWidget(glossCreation2Lbl);
     glossCreationVLt->addWidget(glossCreation0Lbl);
     glossCreationVLt->addLayout(glossCreationLt);
+     glossCreationVLt->addLayout(glossCreationLt1);
 
     QListWidgetItem* itemGlossCreation = new QListWidgetItem( ui->confectioneryFieldList );
     wgtGlossCreation->setLayout(glossCreationVLt);
@@ -615,8 +619,8 @@ void MainWindow::on_glossCreationEndBtn_clicked()
        throw error;
     }
     QWidget* wgtGlossCreationEnd = new QWidget;
-    QLabel* glossCreationEndLbl = new QLabel("Растительное масло: "+QString::number(countGlossCreation.toInt()+countGlossCreation1.toInt())+" мл, смешать.");
-    QLabel* glossCreationEnd0Lbl = new QLabel("Конец создания глянца;");
+    QLabel* glossCreationEndLbl = new QLabel("  Растительное масло: "+QString::number(countGlossCreation.toInt()+countGlossCreation1.toInt())+" миллилитров на всю партию леденцов. Полученное перемешивается в производственной ёмкости.");
+    QLabel* glossCreationEnd0Lbl = new QLabel("  Конец создания глянца");
     wFileMap.append(qMakePair(QString("glossCreationEndLbl"), glossCreationEndLbl->text()+"\n"+glossCreationEnd0Lbl->text()));
     QVBoxLayout *glossCreationEndLt = new QVBoxLayout();
     qInfo(logInfo()) << glossCreationEndLbl->text();
@@ -644,7 +648,7 @@ void MainWindow::on_doughPreparationBtn_clicked()
        throw error;
     }
     QWidget* wgtDoughPreparation = new QWidget;
-    QLabel* doughPreparationLbl = new QLabel("  "+ui->doughPreparationBtn->text()+" на "+countEx+" штук:");
+    QLabel* doughPreparationLbl = new QLabel("  "+ui->doughPreparationBtn->text()+" на "+countEx+" штук предполагает выполнение следующих действий:");
     QLabel* preparationOfRawMaterialsLbl = new QLabel(" 1. Подготовка основного и дополнительного сырья на изделие <<" +trackerComboBox +">>.");
     QLabel* dosingLbl = new QLabel(" 2. Дозирование по объему и массе.");
     QLabel* doughKneading = new QLabel(" 3. Замес теста.");
@@ -896,7 +900,7 @@ void MainWindow::on_putDoughMoldBtn_clicked()
         throw error;
     }
     QWidget* wgtPutDoughMold = new QWidget;
-    QLabel* prepareDoughMoldLbl = new QLabel("      1. Подготовить форму для изделия <<"+trackerComboBox+">>");
+    QLabel* prepareDoughMoldLbl = new QLabel("      Деление теста на куски предполагает выполнение следующих действий:\n      1. Подготовить форму для изделия <<"+trackerComboBox+">>");
     QLabel* putDoughMoldLbl = new QLabel("      2. Положить тесто изделия <<"+trackerComboBox+">> в форму");
     wFileMap.append(qMakePair(QString("prepareDoughMoldLbl"), prepareDoughMoldLbl->text()+"\n"+putDoughMoldLbl->text()));
     qInfo(logInfo()) << prepareDoughMoldLbl->text();
@@ -983,7 +987,7 @@ void MainWindow::on_pourStaffingBtn_clicked()
     }
 
     QWidget* wgtPourStaffing = new QWidget;
-    QLabel* pourStaffingLbl = new QLabel("      1. Залить начинку <<"+nameStaffingOneThing+">> в кондитерский шприц");
+    QLabel* pourStaffingLbl = new QLabel("      Заливка начинки в готовое тесто предполагает выполнение следующих действий:\n      1. Залить начинку <<"+nameStaffingOneThing+">> в кондитерский шприц");
     QLabel* pourStaffingBekingLbl = new QLabel("      2. Залить начинку в изделие <<"+trackerComboBox+">>");
     wFileMap.append(qMakePair(QString("pourStaffingLbl"), pourStaffingLbl->text()+"\n"+pourStaffingBekingLbl->text()));
     qInfo(logInfo()) << pourStaffingLbl->text();
@@ -1061,13 +1065,6 @@ void MainWindow::on_sprinkleProductBtn_clicked()
     wFileMap.append(qMakePair(QString("sprinkleProductLbl"), sprinkleProductLbl->text()));
     QVBoxLayout *sprinkleProductLt = new QVBoxLayout();
     sprinkleProductLt->addWidget(sprinkleProductLbl);
-    if(trackerComboBox == "Шоколадные шарики"){
-        QLabel* sprinkleProduct0Lbl = new QLabel("      Охладить изделие <<"+trackerComboBox+">>;");
-        qInfo(logInfo()) << sprinkleProduct0Lbl->text();
-        wFileMap.append(qMakePair(QString("sprinkleProduct0Lbl"), sprinkleProduct0Lbl->text()));
-        sprinkleProductLt->addWidget(sprinkleProduct0Lbl);
-    }
-
     QListWidgetItem* itemSprinkleProduct = new QListWidgetItem( ui->confectioneryFieldList );
     wgtSprinkleProduct->setLayout(sprinkleProductLt);
     itemSprinkleProduct->setSizeHint(wgtSprinkleProduct->sizeHint());
@@ -1081,7 +1078,7 @@ void MainWindow::on_sprinkleProductBtn_clicked()
 void MainWindow::on_packProductBtn_clicked()
 {
     QWidget* wgtPackProduct = new QWidget;
-    QLabel* packProductLbl = new QLabel("      Упаковать изделие <<"+trackerComboBox+">>;");
+    QLabel* packProductLbl = new QLabel("      Упаковать изделие <<"+trackerComboBox+">>");
     qInfo(logInfo()) << packProductLbl->text();
     wFileMap.append(qMakePair(QString("packProductLbl"), packProductLbl->text()));
     QVBoxLayout *packProductLt = new QVBoxLayout();
@@ -1164,7 +1161,7 @@ void MainWindow::on_makingCaramelSyrupBtn_clicked()
        throw error;
     }
     QWidget* wgtMakingCaramelSyrup = new QWidget;
-    QLabel* makingCaramelSyrupLbl = new QLabel("Приготовление карамельного сиропа с <<"+nameStaffingOneThing+">> с ароматизатором в колличестве "+QString::number(countEx.toInt()*countStaffingOneThing.toInt())+" мл, для изделия <<"+trackerComboBox+">>");
+    QLabel* makingCaramelSyrupLbl = new QLabel("  Приготовление карамельного сиропа с <<"+nameStaffingOneThing+">> с ароматизатором в объеме "+QString::number(countEx.toInt()*countStaffingOneThing.toInt())+" миллилитра, для изделия <<"+trackerComboBox+">>");
     wFileMap.append(qMakePair(QString("makingCaramelSyrupLbl"), makingCaramelSyrupLbl->text()));
     qInfo(logInfo()) << makingCaramelSyrupLbl->text();
     QVBoxLayout *makingCaramelSyrupLt = new QVBoxLayout();
@@ -1189,7 +1186,7 @@ void MainWindow::on_preparationCaramelMassBtn_clicked()
         throw error;
     }
     QWidget* wgtPreparationCaramelMass = new QWidget;
-    QLabel* preparationCaramelMassLbl = new QLabel("Заготовка карамельной массы изделия <<"+trackerComboBox+">>");
+    QLabel* preparationCaramelMassLbl = new QLabel("  Заготовка карамельной массы изделия <<"+trackerComboBox+">>");
     wFileMap.append(qMakePair(QString("preparationCaramelMassLbl"), preparationCaramelMassLbl->text()));
     qInfo(logInfo()) << preparationCaramelMassLbl->text();
     QVBoxLayout *preparationCaramelMassLt = new QVBoxLayout();
@@ -1214,7 +1211,7 @@ void MainWindow::on_coolingCaramelMassBtn_clicked()
         throw error;
     }
     QWidget* wgtCoolingCaramelMass = new QWidget;
-    QLabel* coolingCaramelMassLbl = new QLabel("Охлаждение карамельной массы изделия <<"+trackerComboBox+">>");
+    QLabel* coolingCaramelMassLbl = new QLabel("  Охлаждение карамельной массы изделия <<"+trackerComboBox+">>");
     wFileMap.append(qMakePair(QString("coolingCaramelMassLbl"), coolingCaramelMassLbl->text()));
     qInfo(logInfo()) << coolingCaramelMassLbl->text();
     QVBoxLayout *coolingCaramelMassLt = new QVBoxLayout();
@@ -1239,7 +1236,7 @@ void MainWindow::on_promCaramelMassBtn_clicked()
         throw error;
     }
     QWidget* wgtPromCaramelMass = new QWidget;
-    QLabel* promCaramelMassLbl = new QLabel("Проминка карамельной массы изделия <<"+trackerComboBox+">>");
+    QLabel* promCaramelMassLbl = new QLabel("  Проминка карамельной массы изделия <<"+trackerComboBox+">>");
     wFileMap.append(qMakePair(QString("promCaramelMassLbl"), promCaramelMassLbl->text()));
     qInfo(logInfo()) << promCaramelMassLbl->text();
     QVBoxLayout *promCaramelMassLt = new QVBoxLayout();
@@ -1264,7 +1261,7 @@ void MainWindow::on_shapingCaramelBtn_clicked()
         throw error;
     }
     QWidget* wgtShapingCaramel = new QWidget;
-    QLabel* shapingCaramelLbl = new QLabel("Формирование карамели в вальцевой машине изделия <<"+trackerComboBox+">>");
+    QLabel* shapingCaramelLbl = new QLabel("  Формирование карамели в вальцевой машине изделия <<"+trackerComboBox+">>");
     wFileMap.append(qMakePair(QString("shapingCaramelLbl"), shapingCaramelLbl->text()));
     qInfo(logInfo()) << shapingCaramelLbl->text();
     QVBoxLayout *shapingCaramelLt = new QVBoxLayout();
@@ -1289,8 +1286,8 @@ void MainWindow::on_coolingCaramelBtn_clicked()
         throw error;
     }
     QWidget* wgtCoolingCaramel = new QWidget;
-    QLabel* coolingCaramelLbl = new QLabel("1. Охлаждение карамели до температуры 35 °С изделия <<"+trackerComboBox+">>");
-    QLabel* coolingCaramel1Lbl = new QLabel("2. Влажность воздуха в цехе - не более 93%, температура - от 10 до 12 °С");
+    QLabel* coolingCaramelLbl = new QLabel("    Охлаждение карамели предполагает следующие инструкции:\n    1. Охлаждение карамели до температуры 35 °С изделия <<"+trackerComboBox+">>");
+    QLabel* coolingCaramel1Lbl = new QLabel("    2. Влажность воздуха в цехе - не более 93%, температура - от 10 до 12 °С");
     wFileMap.append(qMakePair(QString("coolingCaramelLbl"), coolingCaramelLbl->text()+"\n"+coolingCaramel1Lbl->text()));
     qInfo(logInfo()) << coolingCaramelLbl->text();
     qInfo(logInfo()) << coolingCaramel1Lbl->text();
@@ -1490,19 +1487,20 @@ void MainWindow::on_runInstrMenu_triggered()
         for(int i = 0; i < wFileMap.size();i++){
 
             if(wFileMap[i].first == QString("stuffingLbl")){
-                wFileMap[i].second = wFileMap[i].second + " мл: " +countStaffingOneThing;
+                wFileMap[i].second = wFileMap[i].second + " объем в миллитрах на одну единицу изделия " +countStaffingOneThing;
             }
             if(wFileMap[i].first == QString("powderLbl")){
-                wFileMap[i].second = wFileMap[i].second + " гр: " +countPowderOneThing;
+                wFileMap[i].second = wFileMap[i].second + " вес в граммах на одну единицу изделия " +countPowderOneThing;
             }
             if(wFileMap[i].first == QString("glazeLbl")){
-                wFileMap[i].second = wFileMap[i].second + " мл: " +countGlazeOneThing;
+                wFileMap[i].second = wFileMap[i].second + " объем в миллитрах на одну единицу изделия " +countGlazeOneThing;
             }
             if(wFileMap[i].first == QString("amountLbl")){
                 wFileMap[i].second = wFileMap[i].second + countEx;
             }
             if(wFileMap[i].first == QString("glossCreation0Lbl")){
-                wFileMap[i].second = wFileMap[i].second + "\n"+"Расплавленные - Парафин: "+countGlossCreation+ " мл, Воск: " + countGlossCreation1 + " мл;";
+                wFileMap[i].second = wFileMap[i].second + "\n"+"Расплавленные - Парафин: "+countGlossCreation+ " миллилитров на всю партию леденцов\nВоск: "
+                        + countGlossCreation1 + " миллилитров на всю партию леденцов";
             }
             stream<< wFileMap[i].second <<endl;
         }
