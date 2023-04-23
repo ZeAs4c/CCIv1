@@ -97,6 +97,13 @@ MainWindow::MainWindow(QWidget *parent)
     countGlossCreation1 = "";
     SweetStuffing = false;
 
+    bakingUseRepeat = false;
+    sweetUseRepeat = false;
+    StaffingUseRepeat = false;
+    PowderUseRepeat = false;
+    GlazeUseRepeat = false;
+
+
 }
 
 MainWindow::~MainWindow()
@@ -205,6 +212,11 @@ void MainWindow::on_endInstractionBtn_clicked()
      productMarkingUse = false;
      packProductUse = false;
      sendingStorageUse = false;
+     bakingUseRepeat = false;
+     sweetUseRepeat = false;
+     StaffingUseRepeat = false;
+     PowderUseRepeat = false;
+     GlazeUseRepeat = false;
     }catch(QString e){
             m_decisionProcessing(e);
         }
@@ -213,6 +225,12 @@ void MainWindow::on_endInstractionBtn_clicked()
 
 void MainWindow::on_bakingBtn_clicked()
 {
+    try{
+    if(bakingUseRepeat){
+       QString error = "Вам стоит выбрать изделие!";
+       qCritical(logError()) << error;
+       throw error;
+    }
     QWidget* wgtBaking = new QWidget;
     QComboBox *boxBaking = new QComboBox();
     boxBaking ->addItem("Пончик");
@@ -231,6 +249,7 @@ void MainWindow::on_bakingBtn_clicked()
             ui->bakingBtn->setEnabled(false);
         }
     });
+    bakingUseRepeat = true;
     bakingLt->addWidget(bakingLbl);
     bakingLt->addWidget(boxBaking);
     QListWidgetItem* itemBaking = new QListWidgetItem( ui->confectioneryFieldList );
@@ -240,11 +259,20 @@ void MainWindow::on_bakingBtn_clicked()
     ui->sweetsBtn->setEnabled(false);
 
     tracker = "baking";
+    }catch(QString e){
+            m_decisionProcessing(e);
+        }
 }
 
 
 void MainWindow::on_sweetsBtn_clicked()
 {
+    try{
+    if(sweetUseRepeat){
+       QString error = "Вам стоит выбрать изделие!";
+       qCritical(logError()) << error;
+       throw error;
+    }
     QWidget* wgtSweets = new QWidget;
     QComboBox *boxSweets = new QComboBox();
     boxSweets ->addItem("Ледeнец");
@@ -277,9 +305,11 @@ void MainWindow::on_sweetsBtn_clicked()
     itemSweets->setSizeHint(wgtSweets->sizeHint());
     ui->confectioneryFieldList->setItemWidget(itemSweets,wgtSweets);
     ui->bakingBtn->setEnabled(false);
-
+    sweetUseRepeat = true;
     tracker = "sweets";
-
+    }catch(QString e){
+            m_decisionProcessing(e);
+        }
 }
 
 
@@ -288,6 +318,11 @@ void MainWindow::on_stuffingBtn_clicked()
     try{
     if(!bakingUse && !sweetUse){
        QString error = "Вам стоит выбрать изделие!";
+       qCritical(logError()) << error;
+       throw error;
+    }
+    if(StaffingUseRepeat){
+       QString error = "Вам стоит выбрать начинку!";
        qCritical(logError()) << error;
        throw error;
     }
@@ -340,6 +375,7 @@ void MainWindow::on_stuffingBtn_clicked()
             ui->stuffingBtn->setEnabled(false);
         }
      });
+    StaffingUseRepeat = true;
     stuffingLt ->addWidget(stuffingLbl);
     stuffingLt ->addWidget(boxStuffing);
     stuffingLt ->addWidget(mlLbl);
@@ -360,6 +396,11 @@ void MainWindow::on_powderBtn_clicked()
     try{
     if(!bakingUse && !sweetUse){
        QString error = "Вам стоит выбрать изделие!";
+       qCritical(logError()) << error;
+       throw error;
+    }
+    if(PowderUseRepeat){
+       QString error = "Вам стоит выбрать присыпку!";
        qCritical(logError()) << error;
        throw error;
     }
@@ -400,7 +441,7 @@ void MainWindow::on_powderBtn_clicked()
     powderLt->addWidget(boxPowder);
     powderLt->addWidget(grLbl);
     powderLt->addWidget(textLinePowder);
-
+    PowderUseRepeat = true;
     QListWidgetItem* itemPowder = new QListWidgetItem( ui->confectioneryFieldList );
     wgtPowder->setLayout(powderLt);
     itemPowder->setSizeHint(wgtPowder->sizeHint());
@@ -416,6 +457,11 @@ void MainWindow::on_glazeBtn_clicked()
     try{
     if(!bakingUse && !sweetUse){
        QString error = "Вам стоит выбрать изделие!";
+       qCritical(logError()) << error;
+       throw error;
+    }
+    if(GlazeUseRepeat){
+       QString error = "Вам стоит выбрать заливку!";
        qCritical(logError()) << error;
        throw error;
     }
@@ -461,7 +507,7 @@ void MainWindow::on_glazeBtn_clicked()
     glazeLt->addWidget(boxGlaze);
     glazeLt->addWidget(mlLbl);
     glazeLt->addWidget(textLineGlaze);
-
+    GlazeUseRepeat = true;
     QListWidgetItem* itemGlaze = new QListWidgetItem( ui->confectioneryFieldList );
     wgtGlaze->setLayout(glazeLt);
     itemGlaze->setSizeHint(wgtGlaze->sizeHint());
@@ -1469,6 +1515,11 @@ void MainWindow::on_deleteAllMenu_triggered()
     productMarkingUse = false;
     packProductUse = false;
     sendingStorageUse = false;
+    bakingUseRepeat = false;
+    sweetUseRepeat = false;
+    StaffingUseRepeat = false;
+    PowderUseRepeat = false;
+    GlazeUseRepeat = false;
     wFileMap.clear();
 }
 

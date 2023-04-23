@@ -158,5 +158,11 @@ private:
     bool formationSolidFillingUse;
     bool pourLazeSolidFillingUse;
 
+    bool bakingUseRepeat;
+    bool sweetUseRepeat;
+    bool StaffingUseRepeat;
+    bool PowderUseRepeat;
+    bool GlazeUseRepeat;
+
 };
 #endif // MAINWINDOW_H
